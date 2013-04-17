@@ -1,24 +1,21 @@
 #include <iostream>
-
+#include <iomanip>
 using namespace std;
 
 int main() 
 {
 
     char message[] = "hello world";
-    int size = sizeof(message) / sizeof(char);
-    int remainder = 17 - size; 
+    cout <<  setiosflags(ios::left);
     for (int k = 0; k < 4 ; k++) 
     {
         for (int j = 0; j < 6 ; j++) 
         {
-            cout << std::right << message;
-            for (int i = 0; i <= remainder ; i++)
-            {
-                cout << std::right << ".";
-            }
+            //really surprised std::right isn't doing this as per http://www.cplusplus.com/reference/ios/right/
+            //cout.setwidth(7*17+20); //I guess this does nothing as I'm calling setw below? 
+            cout <<  setfill('.') <<  setw(17) << message;
         }
-        cout <<std::right<< endl;
+        cout << endl;
     }
 
     return 0;
